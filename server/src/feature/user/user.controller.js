@@ -67,10 +67,10 @@ export default class UserController {
             // Send token in a cookie or as a response
             res.cookie('auth_token', token, {
                 httpOnly: true,
-                secure: process.env.NODE_ENV === 'production',
-                maxAge: 24 * 60 * 60 * 1000
+                secure: false, // Disable secure for development
+                sameSite: 'lax', // Adjust to 'none' for cross-origin requests
+                maxAge: 24 * 60 * 60 * 1000,
             });
-
             return res.status(200).json({ message: 'Login successful', token });
 
         } catch (error) {
