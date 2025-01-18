@@ -25,4 +25,16 @@ export default class userRepository {
         await newUser.save(); // Await the save operation
         return newUser;
     }
+
+
+
+    async findAllUser() {
+        return await userModel.find({},{password:0});
+    }
+
+    async findUserById(id) {
+        console.log("function reach here ")
+        const user = await userModel.findById(id, { password: 0 });
+        return user;
+    }
 }
